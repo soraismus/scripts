@@ -1,0 +1,9 @@
+#!/bin/bash
+while true
+do
+  CON=$( nmcli -t -f NAME status)
+	if [[ $CON != *Panera* && $CON != *ATT* && $CON != *Texas* ]]; then
+	  nmcli con up uuid `nmcli con | awk '/Texas/ {print $5}'`
+	fi
+	sleep 60
+done

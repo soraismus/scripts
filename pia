@@ -1,0 +1,6 @@
+#!/bin/bash
+
+VPN=$1
+UUID=`nmcli con | grep $VPN | awk '{print $5}'`
+
+nmcli con up uuid $UUID

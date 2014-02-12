@@ -1,0 +1,19 @@
+#!/bin/sh
+# Open connection to Panera
+nmcli con up id Panera
+
+# Start a new Firefox window and focus on url bar
+# xdotool key super+shift+2 ctrl+l
+
+# Go to example.com
+# xdotool type "example.com"
+# xdotool key Return
+
+# Start a new Firefox window and go to example.com
+firefox --new-window npr.org
+
+# Move mouse to 'Agree' button and click
+CURRENT=$(xdotool getwindowfocus)
+xdotool mousemove --window $CURRENT --sync 20 510
+xdotool sleep 5
+xdotool click 1

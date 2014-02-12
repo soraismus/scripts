@@ -1,0 +1,11 @@
+#!/bin/sh
+# Start a new Firefox window and go to example.com
+nohup &>/dev/null firefox --new-window https://www.pandora.com
+
+# Move mouse to 'Agree' button
+CURRENT=$(xdotool getwindowfocus)
+xdotool mousemove --window $CURRENT --sync 100 290 
+
+# Sleep until connection; then click
+xdotool sleep 5
+# xdotool click 1

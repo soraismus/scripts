@@ -1,0 +1,5 @@
+#!/bin/bash
+
+repo_name=$1
+
+git clone "git@github.com:'$repo_name'.git"

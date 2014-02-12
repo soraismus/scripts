@@ -1,0 +1,6 @@
+#!/bin/bash
+if [[ "$1" == -l || "$1" == --list ]]; then
+  cat /home/theo/docs/FirefoxStartPage/start.html | less
+else
+  echo "<p><a href="$1">"$2"</a>" >>/home/theo/docs/firefox-start-page/start.html
+fi

@@ -1,0 +1,137 @@
+#!/bin/bash
+
+# See ~/git-pulls/github/rcm/bin files for bash-commandline exemplars.
+
+# Wed Feb  5 17:36:53 EST 2014
+# This file curls an HTTP URL, converts the HTML document
+# into markdown, and saves the file in $BOOKMARKPATH.
+#
+# Usage: bookmark [-s] [-@ url] [-t token-sequence] [tag1 ... tagN]
+
+
+# The following variable and two functions are used in help-messages.
+# --------------------------------------------------------------
+USAGE="Usage: '`basename $0` [-s] [-@ url] [-t token-sequence] [tag1 ... tagN]"
+function displayTokenOptions {
+cat <<TERMINATE
+
+The default token sequence is "I12".
+Majuscule tokens indicate records appropriate for public use; minuscule tokens indicate private records.
+
+Available Tokens:
+	R  - records created like writings, pictures, etc
+	I  - information collected like articles, bookmarks, etc
+	S  - a bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself
+	C  - communication exchanged like email, IMs, etc
+	1  - important documents like backups, finance, taxes, etc
+	2  - writing (a subcategory of -R ?)
+	3  - design and visuals: art, scientific figures, seminar slides, etc
+	4  - life: recipes, productivity, vacations, etc
+	5  - commerce: transactions, returns, insurance, etc
+	6  - government: taxes, identification, papers, etc.
+	7  - maintenance: cars, etc
+	8  - career advancement or transition
+	9  - sysadmin
+	10 - software development of any kind
+	11 - hardware
+	12 - miscellaneous
+
+TERMINATE
+}
+
+function displayHelpMessage {
+  echo "$USAGE"
+  displayTokenOptions
+}
+# --------------------------------------------------------------
+
+
+# A guard to determine whether to save the full document or merely the URL.
+JUST_SAVE_LINK=false
+
+# Default token-sequence is "I10"
+TS="I10"
+
+# The first colon silences error messaging.
+# Colons following the "-@" and "-t" flags indicate that parameters are required.
+while getopts ":@:t:s?" opt; do case $opt in
+
+		# The default URL is gotten from the buffer,
+		# but it can be overridden with the "-@" flag.
+		@) SRC="$OPTARG"
+       ;;
+
+		# By default, the resulting document will principally
+		# comprise the html document (in markdown format)
+		# found at the URL ($SRC). However, the "-s" flag
+		# saves only the URL link ($SRC) itself and not the document.
+		s) JUST_SAVE_LINK=true
+       ;;
+
+		t) TS="$OPTARG"
+       ;;
+	 \?) displayHelpMessage
+		   exit 0
+		   ;;
+
+    # An unescaped '?' represents the default setting.
+		?) echo "Invalid Option Specified."
+			 echo "$USAGE" 1>&2
+			 exit 1
+			 ;;
+	esac
+done
+
+# OPTIND should now be the index of the first non-flag-related argument.
+# Shift off all preceding arguments.
+shift $(($OPTIND - 1))
+
+if [[ -z "$SRC" ]]; then
+	SRC="$(xclip -o)"
+fi
+
+DATE="$( date +%Y%m%d-%H%M%s )"
+
+if $JUST_SAVE_LINK; then
+  TS="S""$TS"
+fi
+
+NAME="$DATE"-"$TS"
+
+if [[ "$#" < 1 ]]; then
+	echo "Optimal use of this script requires at least one tag."
+else
+	for arg in "$@"; do
+		if [ "$arg" = 'help' ]; then
+      displayHelpMessage
+			exit 0
+		else
+			NAME="$NAME"."$arg"
+		fi
+	done
+fi
+
+NAME="$NAME".md
+
+TGT="$BOOKMARKPATH/$NAME"
+
+if [ -e "$TGT" ]; then
+	echo "File ($TGT) already exists."
+	exit 1;
+elif $JUST_SAVE_LINK; then
+	echo "Find pertinent document or resource at the following URL:" >> "$TGT"
+	echo "$SRC" >> "$TGT"
+else
+  echo "$SRC"
+	curl "$SRC" | pandoc -f html -o "$TGT"
+  echo >> "$TGT"
+	echo "This markdown document has been converted from the html document located at:" >> "$TGT"
+	echo "$SRC" >> "$TGT"
+	echo "$SRC has been bookmarked at $TGT."
+fi
+
+for arg in "$@"; do
+	tag set "$TGT" "$arg"
+done
+
+exit 0;
