@@ -13,16 +13,21 @@
 # --------------------------------------------------------------
 USAGE="Usage: '`basename $0` [-s] [-@ url] [-t token-sequence] [tag1 ... tagN]"
 function displayTokenOptions {
-cat <<TERMINATE
+cat <<END_OF_HELP_MSG
 
 The default token sequence is "I12".
 Majuscule tokens indicate records appropriate for public use; minuscule tokens indicate private records.
 
 Available Tokens:
-	R  - records created like writings, pictures, etc
-	I  - information collected like articles, bookmarks, etc
-	S  - a bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself
+  A  - description or a list of characteristics
+  B  - code repository or code exemplar
 	C  - communication exchanged like email, IMs, etc
+  D  - guide, explanation, tutorial, list or, catalog
+  E  - summary, cheatsheet, or overview of the theory or principles of a topic
+  F  - library or utility
+	I  - information collected like articles, bookmarks, etc
+	R  - records created like writings, pictures, etc
+	S  - bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself)
 	1  - important documents like backups, finance, taxes, etc
 	2  - writing (a subcategory of -R ?)
 	3  - design and visuals: art, scientific figures, seminar slides, etc
@@ -36,7 +41,7 @@ Available Tokens:
 	11 - hardware
 	12 - miscellaneous
 
-TERMINATE
+END_OF_HELP_MSG
 }
 
 function displayHelpMessage {
