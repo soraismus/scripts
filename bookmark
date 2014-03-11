@@ -29,6 +29,8 @@ Available Tokens:
   H  - hub or portal
   I  - information collected like articles, bookmarks, etc
   J  - book
+  K  - blog
+  L  - exemplar (e.g., résumé)
   R  - records created like writings, pictures, etc
   S  - bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself)
   1  - important documents like backups, finance, taxes, etc
