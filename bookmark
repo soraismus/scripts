@@ -26,11 +26,13 @@ Available Tokens:
   E  - summary, cheatsheet, or overview of the theory or principles of a topic
   F  - library or utility
   G  - cast, podcast, or screencast
-  H  - hub or portal
+  H  - hub, portal, or wiki
   I  - information collected like articles, bookmarks, etc
   J  - book
   K  - blog
   L  - exemplar (e.g., résumé)
+  M  - posting, advertisement, notice, or application (e.g., job notice)
+  N  - FAQs or responses to queries
   R  - records created like writings, pictures, etc
   S  - bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself)
   1  - important documents like backups, finance, taxes, etc
