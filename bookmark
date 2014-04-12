@@ -29,10 +29,12 @@ Available Tokens:
   H  - hub, portal, or wiki
   I  - information collected like articles, bookmarks, etc
   J  - book
-  K  - blog
+  K  - blog, personal website
   L  - exemplar (e.g., résumé)
   M  - posting, advertisement, notice, or application (e.g., job notice)
   N  - FAQs or responses to queries
+  O  - exercises, challenges, tests, quizzes, puzzles, or kata
+  P  - graphs, pictorial data
   R  - records created like writings, pictures, etc
   S  - bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself)
   1  - important documents like backups, finance, taxes, etc
