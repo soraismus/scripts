@@ -38,6 +38,7 @@ Available Tokens:
   R  - records created like writings, pictures, etc
   S  - bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself)
   T  - authoritative guide or description
+  U  - biographies, info pertaining to persons
   1  - important documents like backups, finance, taxes, etc
   2  - writing
   3  - design and visuals: art, scientific figures, seminar slides, etc
