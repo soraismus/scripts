@@ -40,6 +40,8 @@ Available Tokens:
   T  - authoritative guide or description
   U  - biographies, info pertaining to persons
   V  - list or catalog
+  W  - online journal or libarary
+  X  - systematic or formal comparison
   1  - important documents like backups, finance, taxes, etc
   2  - writing
   3  - design and visuals: art, scientific figures, seminar slides, etc
@@ -139,6 +141,7 @@ if [ -e "$TGT" ]; then
 elif $JUST_SAVE_LINK; then
   echo "Find pertinent document or resource at the following URL:" >> "$TGT"
   echo "$SRC" >> "$TGT"
+  echo "$SRC has been bookmarked at $TGT."
 else
   echo "$SRC"
   curl "$SRC" | pandoc -f html -o "$TGT"
