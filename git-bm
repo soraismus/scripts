@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function backupBookmarks {
+  git add .
+  git ci -m "Add new bookmarks."
+  git push origin
+}
+
+echo "This git command is meant for backing up bookmarks."
+echo "It will commit all files both staged and untracked."
+echo "Do you wish to continue? (y/n)"
+
+read RESPONSE
+
+if [[ "$RESPONSE" == 'y' ]]; then
+  backupBookmarks
+  echo "Bookmarks have been committed and pushed to ORIGIN."
+  exit 0;
+else
+  echo "'git-bm' has been aborted."
+fi
