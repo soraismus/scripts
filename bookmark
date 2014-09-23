@@ -4,7 +4,7 @@
 
 # Wed Feb  5 17:36:53 EST 2014
 # This file curls an HTTP URL, converts the HTML document
-# into markdown, and saves the file in $BOOKMARKPATH.
+# into markdown, and saves the file in $BOOKMARKPATH or $PRIV_BM_PATH.
 #
 # Usage: bookmark [-s] [-@ url] [-t token-sequence] [tag1 ... tagN]
 
@@ -64,7 +64,6 @@ function displayHelpMessage {
   displayTokenOptions
 }
 # --------------------------------------------------------------
-
 
 # A guard to determine whether to save the full document or merely the URL.
 JUST_SAVE_LINK=false
@@ -133,7 +132,23 @@ fi
 
 NAME="$NAME".md
 
-TGT="$BOOKMARKPATH/$NAME"
+# --------------------------------------------------------------
+function rgxTest {
+  echo "$1" | grep -c "$2" | grep -cv 0
+}
+
+function minuscule {
+  rgxTest "$1" [a-z]
+}
+
+PRIVATE="$(minuscule "$TS")"
+
+if [ "$PRIVATE" -eq 1 ]; then
+  TGT="$PRIV_BM_PATH/$NAME"
+else
+  TGT="$BOOKMARKPATH/$NAME"
+fi
+# --------------------------------------------------------------
 
 if [ -e "$TGT" ]; then
   echo "File ($TGT) already exists."
