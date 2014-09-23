@@ -1,5 +1,11 @@
 #!/bin/bash
 
-repo_name=$1
+REPO_NAME="$1"
+URI="git@github.com:$REPO_NAME.git"
 
-git clone "git@github.com:'$repo_name'.git"
+if [[ $# > 1 ]]; then
+  TGT_DIR="$2"
+  git clone "$URI" "$TGT_DIR"
+else
+  git clone "$URI"
+fi
