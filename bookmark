@@ -20,7 +20,7 @@ Majuscule tokens indicate records appropriate for public use; minuscule tokens i
 
 Available Tokens:
   A  - description or list of characteristics
-  B  - code repository or code exemplar
+  B  - code repository (deprecated use: code exemplar; cf. L)
   C  - communication exchanged like email, IMs, etc
   D  - guide, explanation, or tutorial
   E  - summary, cheatsheet, or overview of the theory or principles of a topic
