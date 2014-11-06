@@ -19,7 +19,7 @@ The default token sequence is "I12".
 Majuscule tokens indicate records appropriate for public use; minuscule tokens indicate private records.
 
 Available Tokens:
-  A  - description or list of characteristics
+  A  - description or list of characteristics (including criticisms)
   B  - code repository (deprecated use: code exemplar; cf. L)
   C  - communication exchanged like email, IMs, etc
   D  - guide, explanation, or tutorial
