@@ -32,17 +32,20 @@ Available Tokens:
   K  - blog, personal website
   L  - exemplar (e.g., résumé or web app)
   M  - posting, advertisement, notice, or application (e.g., job notice)
+       (but not for products; cf. Z)
   N  - FAQs, responses to queries, or interviews
   O  - exercises, challenges, tests, quizzes, puzzles, or kata
   P  - graphs, pictorial data
   R  - records created like writings, pictures, etc
-  S  - bookmark (like a reference pointer or symlink to an outside reference, but not the reference itself)
+  S  - bookmark (like a reference pointer or symlink to an outside reference,
+       but not the reference itself)
   T  - authoritative guide or description
   U  - biographies, info pertaining to persons
   V  - list or catalog
   W  - online journal or library
   X  - systematic or formal comparison
   Y  - services
+  Z  - postings or advertisements for products (except books)
   1  - important documents like backups, finance, taxes, etc
   2  - writing
   3  - design and visuals: art, scientific figures, seminar slides, etc
