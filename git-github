@@ -1,17 +1,11 @@
 #!/bin/bash
 
-repo_name=$1
-#token=`cat /home/theo/docs/GitHubAPI/repo_token`
-#auth_header='Authorization: token "'$token'"'
-#data='{"name": "'$repo_name'"}'
-#url='https://api.github.com/user/repos'
+repo="$1"
+token="$( cat "$HOME/docs/github-api/repo_token" )"
 
-#curl -H '$auth_header' -d $data -X POST $url
-
-curl -H "Authorization: token `cat /home/theo/docs/github-api/repo_token`" \
-     -d '{"name": "'$repo_name'"}' \
+curl -H "Authorization: token $token" \
+     -d '{"name": "'$repo'"}' \
      -X POST \
      https://api.github.com/user/repos
 
-#git remote add origin "git@github.com:soraismus/'$repo_name'.git"
-#git push -u origin master
+unset repo token

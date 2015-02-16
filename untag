@@ -12,9 +12,6 @@ if [ -z "$TAGPATH" ]; then
 	exit 2;
 fi
 
-# REF is set to the inode of filename
-#REF="$( ls -iL "$1" | awk '{print $1}' )"
-
 if [[ "$1" = --all ]]; then
 	REF="$( ls -iL "$2" | awk '{print $1}' )"
   find "$TAGPATH" -name "$REF" -delete
