@@ -7,8 +7,8 @@ if [[ $# == 0 || $# == 1 ]]; then
 	exit 1;
 fi
 
-if [ -z "$TAGDIR" ]; then
-  echo "  The variable TAGDIR has not been set to '$HOME/.tags' or exported"
+if [ -z "$TAGPATH" ]; then
+  echo "  The variable TAGPATH has not been set to '$HOME/.tags' or exported"
 	exit 2;
 fi
 
@@ -17,12 +17,12 @@ fi
 
 if [[ "$1" = --all ]]; then
 	REF="$( ls -iL "$2" | awk '{print $1}' )"
-  find "$TAGDIR" -name "$REF" -delete
+  find "$TAGPATH" -name "$REF" -delete
 	echo "  All tags for '$2' have been deleted"
 	exit 0;
 else
 	REF="$( ls -iL "$1" | awk '{print $1}' )"
-	rm "$TAGDIR/$2/$REF"
+	rm "$TAGPATH/$2/$REF"
 	echo " The tag '$2' no longer applies to '$1'"
 	exit 0;
 fi
