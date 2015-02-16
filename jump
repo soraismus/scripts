@@ -1,3 +1,0 @@
-#!/bin/bash
-
-cd "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
