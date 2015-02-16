@@ -3,8 +3,8 @@
 # This script requires at least one argument (cmd).
 # If 'cmd' doesn't exist, exit.
 if [[ $# == 0 ]]; then
-	echo "  This script requires at least one argument (cmd, ...optional-args)"
-	exit 1;
+  echo "  This script requires at least one argument (cmd, ...optional-args)"
+  exit 1;
 fi
 
 NAMESPACE="$(basename "$0")"

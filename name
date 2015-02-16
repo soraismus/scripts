@@ -12,41 +12,41 @@
 # USAGE: name [-x <EXTENSION>] <CURRENT-FILENAME> <TOKEN-SEQUENCE> <TAG-1> <TAG-2> ... <TAG-n>
 # See <this-file> for more information about naming scheme.
 
-	while getopts ":x:" opt; do
-	  case $opt in
-		  x)
-			  EXT="$OPTARG"
-				shift $(($OPTIND - 1));;
-			\?)
-			  echo "TODO: add help message.";;
-		esac
-	done
+  while getopts ":x:" opt; do
+    case $opt in
+      x)
+        EXT="$OPTARG"
+        shift $(($OPTIND - 1));;
+      \?)
+        echo "TODO: add help message.";;
+    esac
+  done
 
   if [[ "$#" < 3 ]]; then
-	  echo "This function requires at least three arguments."
-		echo "Usage: name [-x EXTENSION] <CURRENT-FILENAME> <TOKEN-SEQUENCE> <TAG-1> <TAG-2> ... <TAG-n>"
-		exit 1
-	fi
+    echo "This function requires at least three arguments."
+    echo "Usage: name [-x EXTENSION] <CURRENT-FILENAME> <TOKEN-SEQUENCE> <TAG-1> <TAG-2> ... <TAG-n>"
+    exit 1
+  fi
 
-	CURRENT_NAME="$1"
-	TOKENS="$2"
-	DATE="$( date +%Y%m%d-%H%M%s )"
-	NEW_NAME="$DATE"-"$TOKENS"
+  CURRENT_NAME="$1"
+  TOKENS="$2"
+  DATE="$( date +%Y%m%d-%H%M%s )"
+  NEW_NAME="$DATE"-"$TOKENS"
 
-	shift
-	shift
+  shift
+  shift
 
-	for arg in "$@"; do
-	  NEW_NAME="$NEW_NAME"."$arg"
-	done
+  for arg in "$@"; do
+    NEW_NAME="$NEW_NAME"."$arg"
+  done
 
-	if [ -n "$EXT" ]; then
-	  NEW_NAME="$NEW_NAME"."$EXT"
-	fi
+  if [ -n "$EXT" ]; then
+    NEW_NAME="$NEW_NAME"."$EXT"
+  fi
 
-	mv "$CURRENT_NAME" "$NEW_NAME"
+  mv "$CURRENT_NAME" "$NEW_NAME"
 
-	for arg in "$@"; do
-	  tag set "$NEW_NAME" "$arg"
-		echo "$arg"
-	done
+  for arg in "$@"; do
+    tag set "$NEW_NAME" "$arg"
+    echo "$arg"
+  done
