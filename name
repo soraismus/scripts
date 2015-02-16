@@ -9,7 +9,7 @@
 # name -x pdf -a "kasparov, garry" i "analysis-of-field-transitions-in-zambia" economics chess field-transitions zambia
 
 # Sat Feb  1 10:48:56 EST 2014
-# USAGE: name [-x <EXTENSION>] <CURRENT-FILENAME> <TOKEN-SEQUENCE> <TAGi-1> <TAG-2> ... <TAG-n>
+# USAGE: name [-x <EXTENSION>] <CURRENT-FILENAME> <TOKEN-SEQUENCE> <TAG-1> <TAG-2> ... <TAG-n>
 # See <this-file> for more information about naming scheme.
 
 	while getopts ":x:" opt; do
