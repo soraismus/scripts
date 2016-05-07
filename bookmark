@@ -44,6 +44,7 @@ Available Tokens:
   X  - systematic or formal comparison
   Y  - services
   Z  - programs, courses, MOOCs
+  AA - webapp or service
   1  - important documents like backups, finance, taxes, etc
   2  - writing
   3  - design and visuals: art, scientific figures, seminar slides, etc
@@ -59,6 +60,8 @@ Available Tokens:
   13 - computer science
   14 - systems software (e.g., operating systems)
   15 - networking, routing
+  16 - political economy
+  17 - hard sciences
 
 END_OF_HELP_MSG
 }
@@ -73,7 +76,7 @@ function displayHelpMessage {
 JUST_SAVE_LINK=false
 
 # Default token-sequence is "I10"
-TS="I10"
+TS="I12"
 
 # The first colon silences error messaging.
 # Colons following the "-@" and "-t" flags indicate that parameters are required.
