@@ -6,12 +6,12 @@
 # This file curls an HTTP URL, converts the HTML document
 # into markdown, and saves the file in $BOOKMARKPATH or $PRIV_BM_PATH.
 #
-# Usage: bookmark [-s] [-@ url] [-t token-sequence] [tag1 ... tagN]
+# Usage: bookmark [-s] [-@ url] [-t token-sequence] [-n title] [tag1 ... tagN]
 
 
 # The following variable and two functions are used in help-messages.
 # --------------------------------------------------------------
-USAGE="Usage: '`basename $0` [-s] [-@ url] [-t token-sequence] [tag1 ... tagN]"
+USAGE="Usage: '`basename $0` [-s] [-@ url] [-t token-sequence] [-n title] [tag1 ... tagN]"
 function displayTokenOptions {
 cat <<END_OF_HELP_MSG
 
@@ -75,12 +75,15 @@ function displayHelpMessage {
 # A guard to determine whether to save the full document or merely the URL.
 JUST_SAVE_LINK=false
 
-# Default token-sequence is "I10"
+# Default token-sequence is "I10".
 TS="I12"
 
+# Default title is the empty string "".
+TITLE=""
+
 # The first colon silences error messaging.
-# Colons following the "-@" and "-t" flags indicate that parameters are required.
-while getopts ":@:t:s?" opt; do case $opt in
+# Colons following the "-@", "-t", and "-n" flags indicate that parameters are required.
+while getopts ":@:t:s?n:" opt; do case $opt in
 
     # The default URL is gotten from the buffer,
     # but it can be overridden with the "-@" flag.
@@ -95,6 +98,8 @@ while getopts ":@:t:s?" opt; do case $opt in
        ;;
 
     t) TS="$OPTARG"
+       ;;
+    n) TITLE="$( echo "$OPTARG" | sed 's/\(.*\)/\L\1/' | tr [:space:] '_' )"
        ;;
    \?) displayHelpMessage
        exit 0
@@ -135,6 +140,10 @@ else
       NAME="$NAME"."$arg"
     fi
   done
+fi
+
+if [[ -n "$TITLE" ]]; then
+  NAME="$NAME"~"$TITLE"
 fi
 
 NAME="$NAME".md
